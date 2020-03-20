@@ -1,0 +1,80 @@
+{
+  "words" : [ {
+    "entry" : {
+      "id" : 1,
+      "form" : "lipalain"
+    },
+    "translations" : [ {
+      "title" : "名詞",
+      "forms" : [ "リパライン語", "リパラオネ族", "リパラオネ連邦", "リパラオネ人" ]
+    }, {
+      "title" : "形容詞",
+      "forms" : [ "リパライン語の", "リパラオネ族の", "リパラオネ連邦の", "リパラオネ人の" ]
+    } ],
+    "tags" : [ ],
+    "contents" : [ {
+      "title" : "語源",
+      "text" : "[2011:LIE:lipha limi:暗黒の道]"
+    }, {
+      "title" : "語法",
+      "text" : "【名詞】lipalainerfemo リパライン語化する\nlipalain chafi'ofes　リパラオネ共和国"
+    }, {
+      "title" : "文化",
+      "text" : "語源は\"\"lipha limi\"\"とされているが、実際にこれが語源になったかは不明。\n"
+    }, {
+      "title" : "例文",
+      "text" : "Mol lipalain aptumuss! リパラインの栄光よ、在れ!"
+    } ],
+    "variations" : [ {
+      "title" : "主格",
+      "form" : "lipalain's"
+    }, {
+      "title" : "対格",
+      "form" : "lipalain'i"
+    }, {
+      "title" : "与格",
+      "form" : "lipalain'c"
+    }, {
+      "title" : "属格",
+      "form" : "lipalain'd"
+    }, {
+      "title" : "向格",
+      "form" : "lipalain'l"
+    }, {
+      "title" : "呼格",
+      "form" : "lipalainsti"
+    }, {
+      "title" : "欠格",
+      "form" : "lipalainnerfe"
+    }, {
+      "title" : "共格",
+      "form" : "lipalain'tj"
+    }, {
+      "title" : "話題格",
+      "form" : "lipalain'sci"
+    } ],
+    "relations" : [ ]
+  } ],
+  "zpdic" : {
+    "alphabetOrder" : "",
+    "wordOrderType" : "UNICODE",
+    "punctuations" : [ ",", "、" ],
+    "ignoredTranslationRegex" : "",
+    "pronunciationTitle" : null,
+    "plainInformationTitles" : [ ],
+    "informationTitleOrder" : null,
+    "formFontFamily" : "Arial Black",
+    "defaultWord" : {
+      "entry" : {
+        "id" : -1,
+        "form" : ""
+      },
+      "translations" : [ ],
+      "tags" : [ ],
+      "contents" : [ ],
+      "variations" : [ ],
+      "relations" : [ ]
+    }
+  },
+  "snoj" : "## lineparine orthography"
+}
