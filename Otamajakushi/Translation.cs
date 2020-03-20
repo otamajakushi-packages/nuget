@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Runtime.Serialization;
-using System.Text;
+﻿using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace Otamajakushi
 {
-
-    [DataContract]
     public class Translation
     {
-        [DataMember(Name = "title")]
+        [JsonPropertyName("title")]
         public string Title { get; set; }
 
-        [DataMember(Name = "forms")]
+        [JsonPropertyName("forms")]
         public List<string> Forms { get; set; } = new List<string>();
     }
 }

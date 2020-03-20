@@ -1,38 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Runtime.Serialization;
-using System.Text;
+﻿using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace Otamajakushi
 {
-    [DataContract]
     public class Zpdic
     {
-        [DataMember(Name = "alphabetOrder")]
+        [JsonPropertyName("alphabetOrder")]
         public string AlphabetOrder { get; set; }
 
-        [DataMember(Name = "wordOrderType")]
+        [JsonPropertyName("wordOrderType")]
         public string WordOrderType { get; set; }
         
-        [DataMember(Name = "punctuations")]
+        [JsonPropertyName("punctuations")]
         public List<string> Punctuations { get; set; }
         
-        [DataMember(Name = "ignoredTranslationRegex")]
+        [JsonPropertyName("ignoredTranslationRegex")]
         public string IgnoredTranslationRegex { get; set; }
         
-        [DataMember(Name = "pronunciationTitle")]
+        [JsonPropertyName("pronunciationTitle")]
         public string PronunciationTitle { get; set; }
         
-        [DataMember(Name = "plainInformationTitles")]
+        [JsonPropertyName("plainInformationTitles")]
         public List<string> PlainInformationTitles { get; set; } = new List<string>();
         
-        [DataMember(Name = "informationTitleOrder")]
+        [JsonPropertyName("informationTitleOrder")]
         public object InformationTitleOrder { get; set; }
         
-        [DataMember(Name = "formFontFamily")]
+        [JsonPropertyName("formFontFamily")]
         public object FormFontFamily { get; set; }
         
-        [DataMember(Name = "defaultWord")]
+        [JsonPropertyName("defaultWord")]
         public Word DefaultWord { get; set; }
     }
 }

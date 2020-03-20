@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Runtime.Serialization;
-using System.Text;
+﻿using System.Text.Json.Serialization;
 
 namespace Otamajakushi
 {
-    [DataContract]
     public class Entry
     {
-        [DataMember(Name = "id")]
+        [JsonPropertyName("id")]
         public int Id { get; set; }
 
-        [DataMember(Name = "form")]
+        [JsonPropertyName("form")]
         public string Form { get; set; }
     }
 }

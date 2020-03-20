@@ -1,29 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Runtime.Serialization;
-using System.Text;
+﻿using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace Otamajakushi
 {
-    [DataContract]
     public class Word
     {
-        [DataMember(Name = "entry")]
+        [JsonPropertyName("entry")]
         public Entry Entry { get; set; } = new Entry();
 
-        [DataMember(Name = "translations")]
+        [JsonPropertyName("translations")]
         public List<Translation> Translations { get; set; } = new List<Translation>();
         
-        [DataMember(Name = "tags")]        
+        [JsonPropertyName("tags")]
         public List<string> Tags { get; set; }
 
-        [DataMember(Name = "contents")]
+        [JsonPropertyName("contents")]
         public List<Content> Contents { get; set; } = new List<Content>();
 
-        [DataMember(Name = "variations")]
+        [JsonPropertyName("variations")]
         public List<Variation> Variations { get; set; } = new List<Variation>();
 
-        [DataMember(Name = "relations")]
+        [JsonPropertyName("relations")]
         public List<Relation> Relations { get; set; } = new List<Relation>();
     }
 }

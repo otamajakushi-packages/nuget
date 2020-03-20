@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Runtime.Serialization;
-using System.Text;
+﻿using System.Text.Json.Serialization;
 
 namespace Otamajakushi
 {
-    [DataContract]
     public class Content
     {
-        [DataMember(Name = "title")]
+        [JsonPropertyName("title")]
         public string Title { get; set; }
 
-        [DataMember(Name = "text")]
+        [JsonPropertyName("text")]
         public string Text { get; set; }
     }
 }

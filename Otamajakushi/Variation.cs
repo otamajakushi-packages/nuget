@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Runtime.Serialization;
-using System.Text;
+﻿using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 namespace Otamajakushi
 {
     [DataContract]
     public class Variation
     {
-        [DataMember(Name = "title")]
+        [JsonPropertyName("title")]
         public string Title { get; set; }
 
-        [DataMember(Name = "form")]
+        [JsonPropertyName("form")]
         public string Form { get; set; }
     }
 }
