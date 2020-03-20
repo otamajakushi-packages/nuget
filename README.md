@@ -18,7 +18,7 @@ namespace ConsoleApp
     {
         public void Program()
         {
-            var json = File.ReadAllText(@"input.json")
+            var json = File.ReadAllText(@"input.json");
             var dictionary = OneToManyJsonSerializer.Deserialize(json);
         }
     }
