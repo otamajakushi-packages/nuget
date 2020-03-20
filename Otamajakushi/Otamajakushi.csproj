@@ -2,10 +2,24 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>Skytomo</Authors>
+    <Copyright>Copyright © 2020 skytomo</Copyright>
+    <Company />
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <RepositoryUrl>https://github.com/skytomo221/Otamajakushi</RepositoryUrl>
+    <PackageTags>otm json onetomany dictionary</PackageTags>
+    <PackageProjectUrl>https://github.com/skytomo221/Otamajakushi</PackageProjectUrl>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="System.Text.Json" Version="4.7.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
