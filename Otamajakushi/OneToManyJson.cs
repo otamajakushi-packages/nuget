@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Text.Json.Serialization;
 
 namespace Otamajakushi
@@ -10,5 +11,36 @@ namespace Otamajakushi
 
         [JsonPropertyName("zpdic")]
         public Zpdic Zpdic { get; set; }
+
+        public void RelationIdCompletion()
+        {
+            foreach (var word in Words)
+            {
+                foreach (var relation in word.Relations)
+                {
+                    if (Words.Exists(w => w.Entry == relation.Entry)) { continue; }
+                    if (Words.FindAll(w => w.Entry.Form == relation.Entry.Form).Count == 1)
+                    {
+                        relation.Entry.Id = Words.Find(w => w.Entry.Form == relation.Entry.Form).Entry.Id;
+                    }
+                }
+            }
+        }
+
+        public void AddWord(Word word)
+        {
+            if (Words.Count == 0)
+            {
+                word.Entry.Id = 1;
+            }
+            else
+            {
+                if (!Words.Exists(w => w.Entry.Id == word.Entry.Id))
+                {
+                    word.Entry.Id = Words.Max(w => w.Entry.Id) + 1;
+                }
+            }
+            Words.Add(word);
+        }
     }
 }
