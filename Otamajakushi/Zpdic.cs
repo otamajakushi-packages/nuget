@@ -24,10 +24,10 @@ namespace Otamajakushi
         public List<string> PlainInformationTitles { get; set; } = new List<string>();
         
         [JsonPropertyName("informationTitleOrder")]
-        public object InformationTitleOrder { get; set; }
-        
+        public List<string> InformationTitleOrder { get; set; } = new List<string>();
+
         [JsonPropertyName("formFontFamily")]
-        public object FormFontFamily { get; set; }
+        public string FormFontFamily { get; set; }
         
         [JsonPropertyName("defaultWord")]
         public Word DefaultWord { get; set; }

@@ -59,10 +59,10 @@
     "alphabetOrder" : "",
     "wordOrderType" : "UNICODE",
     "punctuations" : [ ",", "、" ],
-    "ignoredTranslationRegex" : "",
+    "ignoredTranslationRegex" : "()",
     "pronunciationTitle" : null,
     "plainInformationTitles" : [ ],
-    "informationTitleOrder" : null,
+    "informationTitleOrder" : [ "語源", "語法", "文化", "例文" ],
     "formFontFamily" : "Arial Black",
     "defaultWord" : {
       "entry" : {

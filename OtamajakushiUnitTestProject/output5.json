@@ -1,0 +1,43 @@
+{
+  "words": [
+    {
+      "entry": {
+        "id": 1,
+        "form": "いろはにほへと"
+      },
+      "translations": [],
+      "tags": null,
+      "contents": [],
+      "variations": [],
+      "relations": [
+        {
+          "title": "同義語",
+          "entry": {
+            "id": 2,
+            "form": "散りぬるを"
+          }
+        }
+      ]
+    },
+    {
+      "entry": {
+        "id": 2,
+        "form": "散りぬるを"
+      },
+      "translations": [],
+      "tags": null,
+      "contents": [],
+      "variations": [],
+      "relations": [
+        {
+          "title": "対義語",
+          "entry": {
+            "id": 1,
+            "form": "いろはにほへと"
+          }
+        }
+      ]
+    }
+  ],
+  "zpdic": null
+}

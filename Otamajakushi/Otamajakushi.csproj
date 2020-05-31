@@ -9,9 +9,13 @@
     <RepositoryUrl>https://github.com/skytomo221/Otamajakushi</RepositoryUrl>
     <PackageTags>otm json onetomany dictionary</PackageTags>
     <PackageProjectUrl>https://github.com/skytomo221/Otamajakushi</PackageProjectUrl>
+    <Version>1.1.0</Version>
+    <AssemblyVersion>1.1.0.0</AssemblyVersion>
+    <ApplicationIcon>otamajakushi.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.3" />
     <PackageReference Include="System.Text.Json" Version="4.7.1" />
   </ItemGroup>
 
