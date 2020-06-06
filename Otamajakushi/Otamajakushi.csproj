@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -9,14 +9,20 @@
     <RepositoryUrl>https://github.com/skytomo221/Otamajakushi</RepositoryUrl>
     <PackageTags>otm json onetomany dictionary</PackageTags>
     <PackageProjectUrl>https://github.com/skytomo221/Otamajakushi</PackageProjectUrl>
-    <Version>1.1.0</Version>
-    <AssemblyVersion>1.1.0.0</AssemblyVersion>
+    <Version>1.2.0</Version>
+    <AssemblyVersion>1.2.0.0</AssemblyVersion>
     <ApplicationIcon>otamajakushi.ico</ApplicationIcon>
+    <PackageIconUrl>https://raw.githubusercontent.com/skytomo221/Otamajakushi/master/Otamajakushi/otamajakushi.ico</PackageIconUrl>
+    <Description>Otamajakushi is a library which parses OTM-JSON (OneToMany-JSON)</Description>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.3" />
-    <PackageReference Include="System.Text.Json" Version="4.7.1" />
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="System.Text.Json" Version="4.7.2" />
   </ItemGroup>
 
   <ItemGroup>

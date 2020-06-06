@@ -40,6 +40,11 @@ namespace Otamajakushi
                     word.Entry.Id = Words.Max(w => w.Entry.Id) + 1;
                 }
             }
+            word.Translations = word.Translations.Distinct().ToList();
+            word.Tags = word.Tags.Distinct().ToList();
+            word.Contents = word.Contents.Distinct().ToList();
+            word.Variations = word.Variations.Distinct().ToList();
+            word.Relations = word.Relations.Distinct().ToList();
             Words.Add(word);
         }
     }
