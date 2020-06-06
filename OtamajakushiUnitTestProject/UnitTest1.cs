@@ -124,5 +124,137 @@ namespace OtamajakushiUnitTestProject
             var json = OneToManyJsonSerializer.Serialize(dictionary, options);
             File.WriteAllText(@".\..\..\output5.json", json);
         }
+
+        /// <summary>
+        /// 等価性のテスト
+        /// </summary>
+        [TestMethod]
+        public void TestMethod6()
+        {
+            var dictionary = new OneToManyJson();
+            dictionary.AddWord(new Word
+            {
+                Entry = new Entry
+                {
+                    Form = "いろはにほへと",
+                },
+                Translations = new List<Translation>
+                {
+                    new Translation
+                    {
+                        Forms = new List<string> {
+                            "aaa forms",
+                        },
+                        Title ="aaa title",
+                    },
+                    new Translation
+                    {
+                        Forms = new List<string> {
+                            "aaa forms",
+                        },
+                        Title ="aaa title",
+                    },
+                    new Translation
+                    {
+                        Forms = new List<string> {
+                            "bbb forms",
+                        },
+                        Title ="aaa title",
+                    },
+                },
+                Tags = new List<string> { "atag", "btag", "ctag" },
+                Contents = new List<Content>
+                {
+                    new Content
+                    {
+                        Title = "acontilte",
+                        Text = "aconttext",
+                    },
+                    new Content
+                    {
+                        Title = "bcontilte",
+                        Text = "bconttext",
+                    },
+                },
+                Variations = new List<Variation>
+                {
+                    new Variation
+                    {
+                        Title = "vtilte",
+                        Form = "vf1",
+                    },
+                    new Variation
+                    {
+                        Title = "vtilte",
+                        Form = "vf2",
+                    },
+                },
+            }) ;
+            dictionary.AddWord(new Word
+            {
+                Entry = new Entry
+                {
+                    Form = "いろはにほへと",
+                },
+                Translations = new List<Translation>
+                {
+                    new Translation
+                    {
+                        Forms = new List<string> {
+                            "aaa forms",
+                        },
+                        Title ="aaa title",
+                    },
+                    new Translation
+                    {
+                        Forms = new List<string> {
+                            "aaa forms",
+                        },
+                        Title ="aaa title",
+                    },
+                    new Translation
+                    {
+                        Forms = new List<string> {
+                            "bbb forms",
+                        },
+                        Title ="aaa title",
+                    },
+                },
+                Tags = new List<string> { "atag", "btag", "ctag" },
+                Contents = new List<Content>
+                {
+                    new Content
+                    {
+                        Title = "acontilte",
+                        Text = "aconttext",
+                    },
+                    new Content
+                    {
+                        Title = "bcontilte",
+                        Text = "bconttext",
+                    },
+                },
+                Variations = new List<Variation>
+                {
+                    new Variation
+                    {
+                        Title = "vtilte",
+                        Form = "vf1",
+                    },
+                    new Variation
+                    {
+                        Title = "vtilte",
+                        Form = "vf2",
+                    },
+                },
+            });
+            dictionary.Words[1].Entry.Id = dictionary.Words[0].Entry.Id;
+            Assert.AreEqual(true, dictionary.Words[0].Entry == dictionary.Words[1].Entry);
+            Assert.AreEqual(true, dictionary.Words[0].Translations[0] == dictionary.Words[1].Translations[0]);
+            Assert.AreEqual(true, dictionary.Words[0].Tags[0] == dictionary.Words[1].Tags[0]);
+            Assert.AreEqual(true, dictionary.Words[0].Contents[0] == dictionary.Words[1].Contents[0]);
+            Assert.AreEqual(true, dictionary.Words[0].Variations[0] == dictionary.Words[1].Variations[0]);
+            Assert.AreEqual(true, dictionary.Words[0] == dictionary.Words[1]);
+        }
     }
 }
