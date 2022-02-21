@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.29503.13
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Otamajakushi", "Otamajakushi\Otamajakushi.csproj", "{68117B34-D623-4BCB-924A-92DA324BAA1E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OtamajakushiUnitTestProject", "OtamajakushiUnitTestProject\OtamajakushiUnitTestProject.csproj", "{71EE2E64-0385-4987-A558-2A94ADD92D6E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OtamajakushiUnitTest", "OtamajakushiUnitTest\OtamajakushiUnitTest.csproj", "{71EE2E64-0385-4987-A558-2A94ADD92D6E}"
 	ProjectSection(ProjectDependencies) = postProject
 		{68117B34-D623-4BCB-924A-92DA324BAA1E} = {68117B34-D623-4BCB-924A-92DA324BAA1E}
 	EndProjectSection

@@ -1,15 +1,14 @@
-﻿using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 using System.Text.Encodings.Web;
 using System.Text.Unicode;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Otamajakushi;
 
-namespace OtamajakushiUnitTestProject
+namespace OtamajakushiUnitTest
 {
     [TestClass]
-    public class UnitTest1
+    public class OneToManyJsonTest
     {
         readonly OneToManyJson dictionary = OneToManyJsonSerializer.Deserialize(File.ReadAllText(@"../../../samples/sample.otm.json"));
 
