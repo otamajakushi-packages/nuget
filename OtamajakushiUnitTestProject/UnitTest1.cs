@@ -2,6 +2,7 @@
 using System.IO;
 using System.Text.Encodings.Web;
 using System.Text.Unicode;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Otamajakushi;
 
@@ -10,55 +11,139 @@ namespace OtamajakushiUnitTestProject
     [TestClass]
     public class UnitTest1
     {
-        /// <summary>
-        /// 読み込みテスト
-        /// </summary>
+        readonly OneToManyJson dictionary = OneToManyJsonSerializer.Deserialize(File.ReadAllText(@"../../../samples/sample.otm.json"));
+
         [TestMethod]
-        public void TestMethod1()
+        public void WordTest()
         {
-            var dictionary = OneToManyJsonSerializer.Deserialize(File.ReadAllText(@".\..\..\test.json"));
-            Assert.AreEqual(1, dictionary.Words.Count);
-            Assert.AreEqual("lipalain", dictionary.Words[0].Entry.Form);
-            Assert.AreEqual("【名詞】lipalainerfemo リパライン語化する\nlipalain chafi'ofes　リパラオネ共和国",
-                dictionary.Words[0].Contents.Find(x => x.Title == "語法").Text);
+            Assert.AreEqual(8, dictionary.Words.Count);
+            foreach (var word in dictionary.Words)
+            {
+                Assert.IsNotNull(word.Entry);
+                Assert.IsNotNull(word.Translations);
+                Assert.IsNotNull(word.Tags);
+                Assert.IsNotNull(word.Contents);
+                Assert.IsNotNull(word.Variations);
+                Assert.IsNotNull(word.Relations);
+            }
         }
 
-        /// <summary>
-        /// 書き込みテスト
-        /// </summary>
         [TestMethod]
-        public void TestMethod2()
+        public void EntryTest()
         {
-            var dictionary = OneToManyJsonSerializer.Deserialize(File.ReadAllText(@".\..\..\test.json"));
+            Assert.AreEqual(3, dictionary.Words[0].Entry.Id);
+            Assert.AreEqual(6, dictionary.Words[1].Entry.Id);
+            Assert.AreEqual(4, dictionary.Words[2].Entry.Id);
+            Assert.AreEqual(5, dictionary.Words[3].Entry.Id);
+            Assert.AreEqual(2, dictionary.Words[4].Entry.Id);
+            Assert.AreEqual(1, dictionary.Words[5].Entry.Id);
+            Assert.AreEqual(7, dictionary.Words[6].Entry.Id);
+            Assert.AreEqual(8, dictionary.Words[7].Entry.Id);
+            Assert.AreEqual("+", dictionary.Words[0].Entry.Form);
+            Assert.AreEqual(",", dictionary.Words[1].Entry.Form);
+            Assert.AreEqual("-", dictionary.Words[2].Entry.Form);
+            Assert.AreEqual(".", dictionary.Words[3].Entry.Form);
+            Assert.AreEqual("<", dictionary.Words[4].Entry.Form);
+            Assert.AreEqual(">", dictionary.Words[5].Entry.Form);
+            Assert.AreEqual("[", dictionary.Words[6].Entry.Form);
+            Assert.AreEqual("]", dictionary.Words[7].Entry.Form);
+        }
+
+        [TestMethod]
+        public void TranslationsTest()
+        {
+            foreach (var word in dictionary.Words)
+            {
+                Assert.IsNotNull(word.Translations);
+                Assert.AreEqual(1, word.Translations.Count);
+                Assert.AreEqual("動詞", word.Translations[0].Title);
+            }
+            Assert.AreEqual("ポインタの値をインクリメントする", dictionary.Words[0].Translations[0].Forms[0]);
+            Assert.AreEqual("入力から1バイト読み込んで", dictionary.Words[1].Translations[0].Forms[0]);
+            Assert.AreEqual("ポインタが指す値に代入する", dictionary.Words[1].Translations[0].Forms[1]);
+            Assert.AreEqual("ポインタの値をデクリメントする", dictionary.Words[2].Translations[0].Forms[0]);
+            Assert.AreEqual("ポインタの値を出力する", dictionary.Words[3].Translations[0].Forms[0]);
+            Assert.AreEqual("ポインタをデクリメントする", dictionary.Words[4].Translations[0].Forms[0]);
+            Assert.AreEqual("ポインタをインクリメントする", dictionary.Words[5].Translations[0].Forms[0]);
+            Assert.AreEqual("ポインタの値が0ならば", dictionary.Words[6].Translations[0].Forms[0]);
+            Assert.AreEqual("対応する ] の直後にジャンプする", dictionary.Words[6].Translations[0].Forms[1]);
+            Assert.AreEqual("ポインタが指す値が0でないなら", dictionary.Words[7].Translations[0].Forms[0]);
+            Assert.AreEqual("対応する [ にジャンプする。", dictionary.Words[7].Translations[0].Forms[1]);
+        }
+
+        [TestMethod]
+        public void TagsTest()
+        {
+            foreach (var word in dictionary.Words)
+            {
+                Assert.IsNotNull(word.Tags);
+                Assert.AreEqual(1, word.Tags.Count);
+                Assert.AreEqual("命令", word.Tags[0]);
+            }
+        }
+
+
+        [TestMethod]
+        public void ContentsTest()
+        {
+            foreach (var word in dictionary.Words)
+            {
+                Assert.IsNotNull(word.Contents);
+                Assert.AreEqual("C言語", word.Contents[0].Title);
+            }
+            Assert.AreEqual("C言語で (*ptr)++; に相当する。", dictionary.Words[0].Contents[0].Text);
+            Assert.AreEqual("C言語で *ptr=getchar(); に相当する。", dictionary.Words[1].Contents[0].Text);
+            Assert.AreEqual("C言語で (*ptr)--; に相当する。", dictionary.Words[2].Contents[0].Text);
+            Assert.AreEqual("C言語で putchar(*ptr); に相当する。", dictionary.Words[3].Contents[0].Text);
+            Assert.AreEqual("C言語で ptr--; に相当する。", dictionary.Words[4].Contents[0].Text);
+            Assert.AreEqual("C言語で ptr++; に相当する。", dictionary.Words[5].Contents[0].Text);
+            Assert.AreEqual("C言語の while(*ptr){ に相当する。", dictionary.Words[6].Contents[0].Text);
+            Assert.AreEqual("C言語で } に相当する。", dictionary.Words[7].Contents[0].Text);
+        }
+
+        [TestMethod]
+        public void VariationsTest()
+        {
+            foreach (var word in dictionary.Words)
+            {
+                Assert.IsNotNull(word.Variations);
+                Assert.AreEqual(0, word.Variations.Count);
+            }
+        }
+
+        [TestMethod]
+        public void RelationsTest()
+        {
+            foreach (var word in dictionary.Words)
+            {
+                Assert.IsNotNull(word.Relations);
+                Assert.AreEqual(1, word.Relations.Count);
+                foreach (var relation in word.Relations)
+                {
+                    var excepted = dictionary.Words.Find(word2 => word2.Entry.Id == relation.Entry.Id);
+                    Assert.AreEqual(excepted.Entry, relation.Entry);
+                    Assert.AreEqual("対義語", relation.Title);
+                }
+            }
+        }
+
+        [TestMethod]
+        public void SerializeAndDeserializeTest()
+        {
             var options = new System.Text.Json.JsonSerializerOptions
             {
                 Encoder = JavaScriptEncoder.Create(UnicodeRanges.All),
                 WriteIndented = true,
             };
             var json = OneToManyJsonSerializer.Serialize(dictionary, options);
-            File.WriteAllText(@".\..\..\output.json", json);
+            var overwritten = OneToManyJsonSerializer.Deserialize(json);
+            CollectionAssert.AreEqual(dictionary.Words, overwritten.Words);
         }
 
-        /// <summary>
-        /// 書き込んだファイルの読み込みテスト
-        /// </summary>
         [TestMethod]
-        public void TestMethod3()
+        public void AddWordTest()
         {
-            var dictionary = OneToManyJsonSerializer.Deserialize(File.ReadAllText(@".\..\..\output.json"));
-            Assert.AreEqual(1, dictionary.Words.Count);
-            Assert.AreEqual("lipalain", dictionary.Words[0].Entry.Form);
-            Assert.AreEqual("【名詞】lipalainerfemo リパライン語化する\nlipalain chafi'ofes　リパラオネ共和国",
-                dictionary.Words[0].Contents.Find(x => x.Title == "語法").Text);
-        }
-
-        /// <summary>
-        /// AddWord のテスト
-        /// </summary>
-        [TestMethod]
-        public void TestMethod4()
-        {
-            var dictionary = OneToManyJsonSerializer.Deserialize(File.ReadAllText(@".\..\..\output.json"));
+            var dictionary = OneToManyJsonSerializer.Deserialize(File.ReadAllText(@"../../../samples/sample.otm.json"));
             dictionary.AddWord(new Word
             {
                 Entry = new Entry
@@ -66,195 +151,22 @@ namespace OtamajakushiUnitTestProject
                     Form = "test",
                 },
             });
-            Assert.AreEqual(2, dictionary.Words.Count);
-            Assert.AreEqual(2, dictionary.Words[1].Entry.Id);
+            Assert.AreEqual(9, dictionary.Words.Count);
+            Assert.AreEqual(9, dictionary.Words[8].Entry.Id);
         }
 
-        /// <summary>
-        /// RelationIdCompletion のテスト
-        /// </summary>
         [TestMethod]
-        public void TestMethod5()
+        public void EqualTest()
         {
-            var dictionary = new OneToManyJson();
-            dictionary.AddWord(new Word
+            var same = OneToManyJsonSerializer.Deserialize(File.ReadAllText(@"../../../samples/sample.otm.json"));
+            foreach (var (excepted, actual) in dictionary.Words.Zip(same.Words, (excepted, acutual) => (excepted, acutual)))
             {
-                Entry = new Entry
-                {
-                    Form = "いろはにほへと",
-                },
-                Relations = new List<Relation>
-                {
-                    new Relation
-                    {
-                        Title = "同義語",
-                        Entry = new Entry
-                        {
-                            Form = "散りぬるを",
-                        },
-                    },
-                },
-            });
-            dictionary.AddWord(new Word
-            {
-                Entry = new Entry
-                {
-                    Form = "散りぬるを",
-                },
-                Relations = new List<Relation>
-                {
-                    new Relation
-                    {
-                        Title = "対義語",
-                        Entry = new Entry
-                        {
-                            Form = "いろはにほへと",
-                        },
-                    }
-                },
-            });
-            dictionary.RelationIdCompletion();
-            Assert.AreEqual(2, dictionary.Words[0].Relations[0].Entry.Id);
-            Assert.AreEqual(1, dictionary.Words[1].Relations[0].Entry.Id);
-            var options = new System.Text.Json.JsonSerializerOptions
-            {
-                Encoder = JavaScriptEncoder.Create(UnicodeRanges.All),
-                WriteIndented = true,
-            };
-            var json = OneToManyJsonSerializer.Serialize(dictionary, options);
-            File.WriteAllText(@".\..\..\output5.json", json);
-        }
-
-        /// <summary>
-        /// 等価性のテスト
-        /// </summary>
-        [TestMethod]
-        public void TestMethod6()
-        {
-            var dictionary = new OneToManyJson();
-            dictionary.AddWord(new Word
-            {
-                Entry = new Entry
-                {
-                    Form = "いろはにほへと",
-                },
-                Translations = new List<Translation>
-                {
-                    new Translation
-                    {
-                        Forms = new List<string> {
-                            "aaa forms",
-                        },
-                        Title ="aaa title",
-                    },
-                    new Translation
-                    {
-                        Forms = new List<string> {
-                            "aaa forms",
-                        },
-                        Title ="aaa title",
-                    },
-                    new Translation
-                    {
-                        Forms = new List<string> {
-                            "bbb forms",
-                        },
-                        Title ="aaa title",
-                    },
-                },
-                Tags = new List<string> { "atag", "btag", "ctag" },
-                Contents = new List<Content>
-                {
-                    new Content
-                    {
-                        Title = "acontilte",
-                        Text = "aconttext",
-                    },
-                    new Content
-                    {
-                        Title = "bcontilte",
-                        Text = "bconttext",
-                    },
-                },
-                Variations = new List<Variation>
-                {
-                    new Variation
-                    {
-                        Title = "vtilte",
-                        Form = "vf1",
-                    },
-                    new Variation
-                    {
-                        Title = "vtilte",
-                        Form = "vf2",
-                    },
-                },
-            }) ;
-            dictionary.AddWord(new Word
-            {
-                Entry = new Entry
-                {
-                    Form = "いろはにほへと",
-                },
-                Translations = new List<Translation>
-                {
-                    new Translation
-                    {
-                        Forms = new List<string> {
-                            "aaa forms",
-                        },
-                        Title ="aaa title",
-                    },
-                    new Translation
-                    {
-                        Forms = new List<string> {
-                            "aaa forms",
-                        },
-                        Title ="aaa title",
-                    },
-                    new Translation
-                    {
-                        Forms = new List<string> {
-                            "bbb forms",
-                        },
-                        Title ="aaa title",
-                    },
-                },
-                Tags = new List<string> { "atag", "btag", "ctag" },
-                Contents = new List<Content>
-                {
-                    new Content
-                    {
-                        Title = "acontilte",
-                        Text = "aconttext",
-                    },
-                    new Content
-                    {
-                        Title = "bcontilte",
-                        Text = "bconttext",
-                    },
-                },
-                Variations = new List<Variation>
-                {
-                    new Variation
-                    {
-                        Title = "vtilte",
-                        Form = "vf1",
-                    },
-                    new Variation
-                    {
-                        Title = "vtilte",
-                        Form = "vf2",
-                    },
-                },
-            });
-            dictionary.Words[1].Entry.Id = dictionary.Words[0].Entry.Id;
-            Assert.AreEqual(true, dictionary.Words[0].Entry == dictionary.Words[1].Entry);
-            Assert.AreEqual(true, dictionary.Words[0].Translations[0] == dictionary.Words[1].Translations[0]);
-            Assert.AreEqual(true, dictionary.Words[0].Tags[0] == dictionary.Words[1].Tags[0]);
-            Assert.AreEqual(true, dictionary.Words[0].Contents[0] == dictionary.Words[1].Contents[0]);
-            Assert.AreEqual(true, dictionary.Words[0].Variations[0] == dictionary.Words[1].Variations[0]);
-            Assert.AreEqual(true, dictionary.Words[0] == dictionary.Words[1]);
+                Assert.AreEqual(excepted.Entry, actual.Entry);
+                Assert.AreEqual(excepted.Translations[0], actual.Translations[0]);
+                Assert.AreEqual(excepted.Tags[0], actual.Tags[0]);
+                Assert.AreEqual(excepted.Contents[0], actual.Contents[0]);
+                Assert.AreEqual(excepted, actual);
+            }
         }
     }
 }
