@@ -13,7 +13,7 @@ namespace Otamajakushi
         public List<Translation> Translations { get; set; } = new List<Translation>();
 
         [JsonPropertyName("tags")]
-        public List<string> Tags { get; set; }
+        public List<string> Tags { get; set; } = new List<string>();
 
         [JsonPropertyName("contents")]
         public List<Content> Contents { get; set; } = new List<Content>();
