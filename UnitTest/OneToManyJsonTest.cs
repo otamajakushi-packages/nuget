@@ -11,7 +11,7 @@ namespace UnitTest
     [TestClass]
     public class OneToManyJsonTest
     {
-        readonly OneToManyJson dictionary = OneToManyJsonSerializer.Deserialize(File.ReadAllText(@"../../../../samples/sample.otm.json", Encoding.UTF8));
+        readonly OneToManyJson dictionary = OneToManyJsonSerializer.Deserialize(File.ReadAllText(@"../../../../samples/sample.otm.json"));
 
         [TestMethod]
         public void WordTest()
@@ -56,19 +56,19 @@ namespace UnitTest
             {
                 Assert.IsNotNull(word.Translations);
                 Assert.AreEqual(1, word.Translations.Count);
-                Assert.AreEqual("動詞", word.Translations[0].Title);
+                Assert.AreEqual("\u52d5\u8a5e", word.Translations[0].Title);
             }
-            Assert.AreEqual("ポインタの値をインクリメントする", dictionary.Words[0].Translations[0].Forms[0]);
-            Assert.AreEqual("入力から1バイト読み込んで", dictionary.Words[1].Translations[0].Forms[0]);
-            Assert.AreEqual("ポインタが指す値に代入する", dictionary.Words[1].Translations[0].Forms[1]);
-            Assert.AreEqual("ポインタの値をデクリメントする", dictionary.Words[2].Translations[0].Forms[0]);
-            Assert.AreEqual("ポインタの値を出力する", dictionary.Words[3].Translations[0].Forms[0]);
-            Assert.AreEqual("ポインタをデクリメントする", dictionary.Words[4].Translations[0].Forms[0]);
-            Assert.AreEqual("ポインタをインクリメントする", dictionary.Words[5].Translations[0].Forms[0]);
-            Assert.AreEqual("ポインタの値が0ならば", dictionary.Words[6].Translations[0].Forms[0]);
-            Assert.AreEqual("対応する ] の直後にジャンプする", dictionary.Words[6].Translations[0].Forms[1]);
-            Assert.AreEqual("ポインタが指す値が0でないなら", dictionary.Words[7].Translations[0].Forms[0]);
-            Assert.AreEqual("対応する [ にジャンプする。", dictionary.Words[7].Translations[0].Forms[1]);
+            Assert.AreEqual("\u30dd\u30a4\u30f3\u30bf\u306e\u5024\u3092\u30a4\u30f3\u30af\u30ea\u30e1\u30f3\u30c8\u3059\u308b", dictionary.Words[0].Translations[0].Forms[0]);
+            Assert.AreEqual("\u5165\u529b\u304b\u30891\u30d0\u30a4\u30c8\u8aad\u307f\u8fbc\u3093\u3067", dictionary.Words[1].Translations[0].Forms[0]);
+            Assert.AreEqual("\u30dd\u30a4\u30f3\u30bf\u304c\u6307\u3059\u5024\u306b\u4ee3\u5165\u3059\u308b", dictionary.Words[1].Translations[0].Forms[1]);
+            Assert.AreEqual("\u30dd\u30a4\u30f3\u30bf\u306e\u5024\u3092\u30c7\u30af\u30ea\u30e1\u30f3\u30c8\u3059\u308b", dictionary.Words[2].Translations[0].Forms[0]);
+            Assert.AreEqual("\u30dd\u30a4\u30f3\u30bf\u306e\u5024\u3092\u51fa\u529b\u3059\u308b", dictionary.Words[3].Translations[0].Forms[0]);
+            Assert.AreEqual("\u30dd\u30a4\u30f3\u30bf\u3092\u30c7\u30af\u30ea\u30e1\u30f3\u30c8\u3059\u308b", dictionary.Words[4].Translations[0].Forms[0]);
+            Assert.AreEqual("\u30dd\u30a4\u30f3\u30bf\u3092\u30a4\u30f3\u30af\u30ea\u30e1\u30f3\u30c8\u3059\u308b", dictionary.Words[5].Translations[0].Forms[0]);
+            Assert.AreEqual("\u30dd\u30a4\u30f3\u30bf\u306e\u5024\u304c0\u306a\u3089\u3070", dictionary.Words[6].Translations[0].Forms[0]);
+            Assert.AreEqual("\u5bfe\u5fdc\u3059\u308b ] \u306e\u76f4\u5f8c\u306b\u30b8\u30e3\u30f3\u30d7\u3059\u308b", dictionary.Words[6].Translations[0].Forms[1]);
+            Assert.AreEqual("\u30dd\u30a4\u30f3\u30bf\u304c\u6307\u3059\u5024\u304c0\u3067\u306a\u3044\u306a\u3089", dictionary.Words[7].Translations[0].Forms[0]);
+            Assert.AreEqual("\u5bfe\u5fdc\u3059\u308b [ \u306b\u30b8\u30e3\u30f3\u30d7\u3059\u308b\u3002", dictionary.Words[7].Translations[0].Forms[1]);
         }
 
         [TestMethod]
@@ -78,7 +78,7 @@ namespace UnitTest
             {
                 Assert.IsNotNull(word.Tags);
                 Assert.AreEqual(1, word.Tags.Count);
-                Assert.AreEqual("命令", word.Tags[0]);
+                Assert.AreEqual("\u547d\u4ee4", word.Tags[0]);
             }
         }
 
@@ -89,16 +89,16 @@ namespace UnitTest
             foreach (var word in dictionary.Words)
             {
                 Assert.IsNotNull(word.Contents);
-                Assert.AreEqual("C言語", word.Contents[0].Title);
+                Assert.AreEqual("C\u8a00\u8a9e", word.Contents[0].Title);
             }
-            Assert.AreEqual("C言語で (*ptr)++; に相当する。", dictionary.Words[0].Contents[0].Text);
-            Assert.AreEqual("C言語で *ptr=getchar(); に相当する。", dictionary.Words[1].Contents[0].Text);
-            Assert.AreEqual("C言語で (*ptr)--; に相当する。", dictionary.Words[2].Contents[0].Text);
-            Assert.AreEqual("C言語で putchar(*ptr); に相当する。", dictionary.Words[3].Contents[0].Text);
-            Assert.AreEqual("C言語で ptr--; に相当する。", dictionary.Words[4].Contents[0].Text);
-            Assert.AreEqual("C言語で ptr++; に相当する。", dictionary.Words[5].Contents[0].Text);
-            Assert.AreEqual("C言語の while(*ptr){ に相当する。", dictionary.Words[6].Contents[0].Text);
-            Assert.AreEqual("C言語で } に相当する。", dictionary.Words[7].Contents[0].Text);
+            Assert.AreEqual("C\u8a00\u8a9e\u3067 (*ptr)++; \u306b\u76f8\u5f53\u3059\u308b\u3002", dictionary.Words[0].Contents[0].Text);
+            Assert.AreEqual("C\u8a00\u8a9e\u3067 *ptr=getchar(); \u306b\u76f8\u5f53\u3059\u308b\u3002", dictionary.Words[1].Contents[0].Text);
+            Assert.AreEqual("C\u8a00\u8a9e\u3067 (*ptr)--; \u306b\u76f8\u5f53\u3059\u308b\u3002", dictionary.Words[2].Contents[0].Text);
+            Assert.AreEqual("C\u8a00\u8a9e\u3067 putchar(*ptr); \u306b\u76f8\u5f53\u3059\u308b\u3002", dictionary.Words[3].Contents[0].Text);
+            Assert.AreEqual("C\u8a00\u8a9e\u3067 ptr--; \u306b\u76f8\u5f53\u3059\u308b\u3002", dictionary.Words[4].Contents[0].Text);
+            Assert.AreEqual("C\u8a00\u8a9e\u3067 ptr++; \u306b\u76f8\u5f53\u3059\u308b\u3002", dictionary.Words[5].Contents[0].Text);
+            Assert.AreEqual("C\u8a00\u8a9e\u306e while(*ptr){ \u306b\u76f8\u5f53\u3059\u308b\u3002", dictionary.Words[6].Contents[0].Text);
+            Assert.AreEqual("C\u8a00\u8a9e\u3067 } \u306b\u76f8\u5f53\u3059\u308b\u3002", dictionary.Words[7].Contents[0].Text);
         }
 
         [TestMethod]
@@ -122,7 +122,7 @@ namespace UnitTest
                 {
                     var excepted = dictionary.Words.Find(word2 => word2.Entry.Id == relation.Entry.Id);
                     Assert.AreEqual(excepted.Entry, relation.Entry);
-                    Assert.AreEqual("対義語", relation.Title);
+                    Assert.AreEqual("\u5bfe\u7fa9\u8a9e", relation.Title);
                 }
             }
         }
