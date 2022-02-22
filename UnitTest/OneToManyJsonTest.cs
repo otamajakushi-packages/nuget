@@ -1,16 +1,16 @@
-ï»¿using System.IO;
+using System.IO;
 using System.Text.Encodings.Web;
 using System.Text.Unicode;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Otamajakushi;
 
-namespace OtamajakushiUnitTest
+namespace UnitTest
 {
     [TestClass]
     public class OneToManyJsonTest
     {
-        readonly OneToManyJson dictionary = OneToManyJsonSerializer.Deserialize(File.ReadAllText(@"../../../samples/sample.otm.json"));
+        readonly OneToManyJson dictionary = OneToManyJsonSerializer.Deserialize(File.ReadAllText(@"../../../../samples/sample.otm.json"));
 
         [TestMethod]
         public void WordTest()
@@ -55,19 +55,19 @@ namespace OtamajakushiUnitTest
             {
                 Assert.IsNotNull(word.Translations);
                 Assert.AreEqual(1, word.Translations.Count);
-                Assert.AreEqual("å‹•è©ž", word.Translations[0].Title);
+                Assert.AreEqual("“®ŽŒ", word.Translations[0].Title);
             }
-            Assert.AreEqual("ãƒã‚¤ãƒ³ã‚¿ã®å€¤ã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆã™ã‚‹", dictionary.Words[0].Translations[0].Forms[0]);
-            Assert.AreEqual("å…¥åŠ›ã‹ã‚‰1ãƒã‚¤ãƒˆèª­ã¿è¾¼ã‚“ã§", dictionary.Words[1].Translations[0].Forms[0]);
-            Assert.AreEqual("ãƒã‚¤ãƒ³ã‚¿ãŒæŒ‡ã™å€¤ã«ä»£å…¥ã™ã‚‹", dictionary.Words[1].Translations[0].Forms[1]);
-            Assert.AreEqual("ãƒã‚¤ãƒ³ã‚¿ã®å€¤ã‚’ãƒ‡ã‚¯ãƒªãƒ¡ãƒ³ãƒˆã™ã‚‹", dictionary.Words[2].Translations[0].Forms[0]);
-            Assert.AreEqual("ãƒã‚¤ãƒ³ã‚¿ã®å€¤ã‚’å‡ºåŠ›ã™ã‚‹", dictionary.Words[3].Translations[0].Forms[0]);
-            Assert.AreEqual("ãƒã‚¤ãƒ³ã‚¿ã‚’ãƒ‡ã‚¯ãƒªãƒ¡ãƒ³ãƒˆã™ã‚‹", dictionary.Words[4].Translations[0].Forms[0]);
-            Assert.AreEqual("ãƒã‚¤ãƒ³ã‚¿ã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆã™ã‚‹", dictionary.Words[5].Translations[0].Forms[0]);
-            Assert.AreEqual("ãƒã‚¤ãƒ³ã‚¿ã®å€¤ãŒ0ãªã‚‰ã°", dictionary.Words[6].Translations[0].Forms[0]);
-            Assert.AreEqual("å¯¾å¿œã™ã‚‹ ] ã®ç›´å¾Œã«ã‚¸ãƒ£ãƒ³ãƒ—ã™ã‚‹", dictionary.Words[6].Translations[0].Forms[1]);
-            Assert.AreEqual("ãƒã‚¤ãƒ³ã‚¿ãŒæŒ‡ã™å€¤ãŒ0ã§ãªã„ãªã‚‰", dictionary.Words[7].Translations[0].Forms[0]);
-            Assert.AreEqual("å¯¾å¿œã™ã‚‹ [ ã«ã‚¸ãƒ£ãƒ³ãƒ—ã™ã‚‹ã€‚", dictionary.Words[7].Translations[0].Forms[1]);
+            Assert.AreEqual("ƒ|ƒCƒ“ƒ^‚Ì’l‚ðƒCƒ“ƒNƒŠƒƒ“ƒg‚·‚é", dictionary.Words[0].Translations[0].Forms[0]);
+            Assert.AreEqual("“ü—Í‚©‚ç1ƒoƒCƒg“Ç‚Ýž‚ñ‚Å", dictionary.Words[1].Translations[0].Forms[0]);
+            Assert.AreEqual("ƒ|ƒCƒ“ƒ^‚ªŽw‚·’l‚É‘ã“ü‚·‚é", dictionary.Words[1].Translations[0].Forms[1]);
+            Assert.AreEqual("ƒ|ƒCƒ“ƒ^‚Ì’l‚ðƒfƒNƒŠƒƒ“ƒg‚·‚é", dictionary.Words[2].Translations[0].Forms[0]);
+            Assert.AreEqual("ƒ|ƒCƒ“ƒ^‚Ì’l‚ðo—Í‚·‚é", dictionary.Words[3].Translations[0].Forms[0]);
+            Assert.AreEqual("ƒ|ƒCƒ“ƒ^‚ðƒfƒNƒŠƒƒ“ƒg‚·‚é", dictionary.Words[4].Translations[0].Forms[0]);
+            Assert.AreEqual("ƒ|ƒCƒ“ƒ^‚ðƒCƒ“ƒNƒŠƒƒ“ƒg‚·‚é", dictionary.Words[5].Translations[0].Forms[0]);
+            Assert.AreEqual("ƒ|ƒCƒ“ƒ^‚Ì’l‚ª0‚È‚ç‚Î", dictionary.Words[6].Translations[0].Forms[0]);
+            Assert.AreEqual("‘Î‰ž‚·‚é ] ‚Ì’¼Œã‚ÉƒWƒƒƒ“ƒv‚·‚é", dictionary.Words[6].Translations[0].Forms[1]);
+            Assert.AreEqual("ƒ|ƒCƒ“ƒ^‚ªŽw‚·’l‚ª0‚Å‚È‚¢‚È‚ç", dictionary.Words[7].Translations[0].Forms[0]);
+            Assert.AreEqual("‘Î‰ž‚·‚é [ ‚ÉƒWƒƒƒ“ƒv‚·‚éB", dictionary.Words[7].Translations[0].Forms[1]);
         }
 
         [TestMethod]
@@ -77,7 +77,7 @@ namespace OtamajakushiUnitTest
             {
                 Assert.IsNotNull(word.Tags);
                 Assert.AreEqual(1, word.Tags.Count);
-                Assert.AreEqual("å‘½ä»¤", word.Tags[0]);
+                Assert.AreEqual("–½—ß", word.Tags[0]);
             }
         }
 
@@ -88,16 +88,16 @@ namespace OtamajakushiUnitTest
             foreach (var word in dictionary.Words)
             {
                 Assert.IsNotNull(word.Contents);
-                Assert.AreEqual("Cè¨€èªž", word.Contents[0].Title);
+                Assert.AreEqual("CŒ¾Œê", word.Contents[0].Title);
             }
-            Assert.AreEqual("Cè¨€èªžã§ (*ptr)++; ã«ç›¸å½“ã™ã‚‹ã€‚", dictionary.Words[0].Contents[0].Text);
-            Assert.AreEqual("Cè¨€èªžã§ *ptr=getchar(); ã«ç›¸å½“ã™ã‚‹ã€‚", dictionary.Words[1].Contents[0].Text);
-            Assert.AreEqual("Cè¨€èªžã§ (*ptr)--; ã«ç›¸å½“ã™ã‚‹ã€‚", dictionary.Words[2].Contents[0].Text);
-            Assert.AreEqual("Cè¨€èªžã§ putchar(*ptr); ã«ç›¸å½“ã™ã‚‹ã€‚", dictionary.Words[3].Contents[0].Text);
-            Assert.AreEqual("Cè¨€èªžã§ ptr--; ã«ç›¸å½“ã™ã‚‹ã€‚", dictionary.Words[4].Contents[0].Text);
-            Assert.AreEqual("Cè¨€èªžã§ ptr++; ã«ç›¸å½“ã™ã‚‹ã€‚", dictionary.Words[5].Contents[0].Text);
-            Assert.AreEqual("Cè¨€èªžã® while(*ptr){ ã«ç›¸å½“ã™ã‚‹ã€‚", dictionary.Words[6].Contents[0].Text);
-            Assert.AreEqual("Cè¨€èªžã§ } ã«ç›¸å½“ã™ã‚‹ã€‚", dictionary.Words[7].Contents[0].Text);
+            Assert.AreEqual("CŒ¾Œê‚Å (*ptr)++; ‚É‘Š“–‚·‚éB", dictionary.Words[0].Contents[0].Text);
+            Assert.AreEqual("CŒ¾Œê‚Å *ptr=getchar(); ‚É‘Š“–‚·‚éB", dictionary.Words[1].Contents[0].Text);
+            Assert.AreEqual("CŒ¾Œê‚Å (*ptr)--; ‚É‘Š“–‚·‚éB", dictionary.Words[2].Contents[0].Text);
+            Assert.AreEqual("CŒ¾Œê‚Å putchar(*ptr); ‚É‘Š“–‚·‚éB", dictionary.Words[3].Contents[0].Text);
+            Assert.AreEqual("CŒ¾Œê‚Å ptr--; ‚É‘Š“–‚·‚éB", dictionary.Words[4].Contents[0].Text);
+            Assert.AreEqual("CŒ¾Œê‚Å ptr++; ‚É‘Š“–‚·‚éB", dictionary.Words[5].Contents[0].Text);
+            Assert.AreEqual("CŒ¾Œê‚Ì while(*ptr){ ‚É‘Š“–‚·‚éB", dictionary.Words[6].Contents[0].Text);
+            Assert.AreEqual("CŒ¾Œê‚Å } ‚É‘Š“–‚·‚éB", dictionary.Words[7].Contents[0].Text);
         }
 
         [TestMethod]
@@ -121,7 +121,7 @@ namespace OtamajakushiUnitTest
                 {
                     var excepted = dictionary.Words.Find(word2 => word2.Entry.Id == relation.Entry.Id);
                     Assert.AreEqual(excepted.Entry, relation.Entry);
-                    Assert.AreEqual("å¯¾ç¾©èªž", relation.Title);
+                    Assert.AreEqual("‘Î‹`Œê", relation.Title);
                 }
             }
         }
@@ -142,7 +142,7 @@ namespace OtamajakushiUnitTest
         [TestMethod]
         public void AddWordTest()
         {
-            var dictionary = OneToManyJsonSerializer.Deserialize(File.ReadAllText(@"../../../samples/sample.otm.json"));
+            var dictionary = OneToManyJsonSerializer.Deserialize(File.ReadAllText(@"../../../../samples/sample.otm.json"));
             dictionary.AddWord(new Word
             {
                 Entry = new Entry
@@ -157,7 +157,7 @@ namespace OtamajakushiUnitTest
         [TestMethod]
         public void EqualTest()
         {
-            var same = OneToManyJsonSerializer.Deserialize(File.ReadAllText(@"../../../samples/sample.otm.json"));
+            var same = OneToManyJsonSerializer.Deserialize(File.ReadAllText(@"../../../../samples/sample.otm.json"));
             foreach (var (excepted, actual) in dictionary.Words.Zip(same.Words, (excepted, acutual) => (excepted, acutual)))
             {
                 Assert.AreEqual(excepted.Entry, actual.Entry);
