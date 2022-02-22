@@ -4,13 +4,14 @@ using System.Text.Unicode;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Otamajakushi;
+using System.Text;
 
 namespace UnitTest
 {
     [TestClass]
     public class OneToManyJsonTest
     {
-        readonly OneToManyJson dictionary = OneToManyJsonSerializer.Deserialize(File.ReadAllText(@"../../../../samples/sample.otm.json"));
+        readonly OneToManyJson dictionary = OneToManyJsonSerializer.Deserialize(File.ReadAllText(@"../../../../samples/sample.otm.json", Encoding.UTF8));
 
         [TestMethod]
         public void WordTest()
