@@ -10,18 +10,23 @@ namespace Otamajakushi
         public Entry Entry { get; set; } = new Entry();
 
         [JsonPropertyName("translations")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Usage", "CA2227: Collection properties should be read only")]
         public List<Translation> Translations { get; set; } = new List<Translation>();
 
         [JsonPropertyName("tags")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Usage", "CA2227: Collection properties should be read only")]
         public List<string> Tags { get; set; } = new List<string>();
 
         [JsonPropertyName("contents")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Usage", "CA2227: Collection properties should be read only")]
         public List<Content> Contents { get; set; } = new List<Content>();
 
         [JsonPropertyName("variations")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Usage", "CA2227: Collection properties should be read only")]
         public List<Variation> Variations { get; set; } = new List<Variation>();
 
         [JsonPropertyName("relations")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Usage", "CA2227: Collection properties should be read only")]
         public List<Relation> Relations { get; set; } = new List<Relation>();
 
         public static bool operator ==(Word l, Word r)

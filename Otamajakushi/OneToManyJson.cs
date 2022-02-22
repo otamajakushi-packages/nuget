@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json.Serialization;
 
@@ -7,6 +8,7 @@ namespace Otamajakushi
     public class OneToManyJson
     {
         [JsonPropertyName("words")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Usage", "CA2227: Collection properties should be read only")]
         public List<Word> Words { get; set; } = new List<Word>();
 
         [JsonPropertyName("zpdic")]
@@ -29,6 +31,7 @@ namespace Otamajakushi
 
         public void AddWord(Word word)
         {
+            if (word == null) throw new ArgumentNullException(nameof(word));
             if (Words.Count == 0)
             {
                 word.Entry.Id = 1;

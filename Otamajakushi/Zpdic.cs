@@ -12,6 +12,7 @@ namespace Otamajakushi
         public string WordOrderType { get; set; }
         
         [JsonPropertyName("punctuations")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Usage", "CA2227: Collection properties should be read only")]
         public List<string> Punctuations { get; set; }
         
         [JsonPropertyName("ignoredTranslationRegex")]
@@ -21,9 +22,11 @@ namespace Otamajakushi
         public string PronunciationTitle { get; set; }
         
         [JsonPropertyName("plainInformationTitles")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Usage", "CA2227: Collection properties should be read only")]
         public List<string> PlainInformationTitles { get; set; } = new List<string>();
         
         [JsonPropertyName("informationTitleOrder")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Usage", "CA2227: Collection properties should be read only")]
         public List<string> InformationTitleOrder { get; set; } = new List<string>();
 
         [JsonPropertyName("formFontFamily")]

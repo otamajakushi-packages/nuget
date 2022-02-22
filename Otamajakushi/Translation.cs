@@ -10,6 +10,7 @@ namespace Otamajakushi
         public string Title { get; set; }
 
         [JsonPropertyName("forms")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Usage", "CA2227: Collection properties should be read only")]
         public List<string> Forms { get; set; } = new List<string>();
 
         public static bool operator ==(Translation l, Translation r)
