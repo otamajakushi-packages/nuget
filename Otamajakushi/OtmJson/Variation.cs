@@ -1,16 +1,18 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
-namespace Otamajakushi
+namespace Otamajakushi.OtmJson
 {
-    public class Entry
+    [DataContract]
+    public class Variation
     {
-        [JsonPropertyName("id")]
-        public int Id { get; set; }
+        [JsonPropertyName("title")]
+        public string Title { get; set; }
 
         [JsonPropertyName("form")]
         public string Form { get; set; }
 
-        public static bool operator ==(Entry l, Entry r)
+        public static bool operator ==(Variation l, Variation r)
         {
             if (l is null && r is null)
             {
@@ -23,7 +25,7 @@ namespace Otamajakushi
             return l.Equals(r);
         }
 
-        public static bool operator !=(Entry l, Entry r)
+        public static bool operator !=(Variation l, Variation r)
         {
             if (l is null && r is null)
             {
@@ -37,11 +39,11 @@ namespace Otamajakushi
         }
 
         public override bool Equals(object obj)
-            => obj is Entry entry &&
-            Id == entry.Id &&
-            Form == entry.Form;
+            => obj is Variation v &&
+            Title == v.Title &&
+            Form == v.Form;
 
         public override int GetHashCode()
-            => Id.GetHashCode() ^ Form.GetHashCode();
+          => Title.GetHashCode() ^ Form.GetHashCode();
     }
 }

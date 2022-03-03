@@ -3,16 +3,15 @@ using System.Text.Encodings.Web;
 using System.Text.Unicode;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Otamajakushi;
-using System.Text;
+using Otamajakushi.OtmJson;
 using System.Collections.Generic;
 
 namespace UnitTest
 {
     [TestClass]
-    public class OneToManyJsonTest
+    public class OtmJsonTest
     {
-        readonly OneToManyJson dictionary = OneToManyJsonSerializer.Deserialize(File.ReadAllText(@"../../../../samples/sample.otm.json"));
+        readonly OtmJson dictionary = OtmJsonSerializer.Deserialize(File.ReadAllText(@"../../../../samples/sample.otm.json"));
 
         [TestMethod]
         public void WordTest()
@@ -130,15 +129,15 @@ namespace UnitTest
                 Encoder = JavaScriptEncoder.Create(UnicodeRanges.All),
                 WriteIndented = true,
             };
-            var json = OneToManyJsonSerializer.Serialize(dictionary, options);
-            var overwritten = OneToManyJsonSerializer.Deserialize(json);
+            var json = OtmJsonSerializer.Serialize(dictionary, options);
+            var overwritten = OtmJsonSerializer.Deserialize(json);
             CollectionAssert.AreEqual(dictionary.Words, overwritten.Words);
         }
 
         [TestMethod]
         public void AddWordTest()
         {
-            var dictionary = OneToManyJsonSerializer.Deserialize(File.ReadAllText(@"../../../../samples/sample.otm.json"));
+            var dictionary = OtmJsonSerializer.Deserialize(File.ReadAllText(@"../../../../samples/sample.otm.json"));
             dictionary.AddWord(new Word
             {
                 Entry = new Entry
@@ -153,7 +152,7 @@ namespace UnitTest
         [TestMethod]
         public void EqualTest()
         {
-            var same = OneToManyJsonSerializer.Deserialize(File.ReadAllText(@"../../../../samples/sample.otm.json"));
+            var same = OtmJsonSerializer.Deserialize(File.ReadAllText(@"../../../../samples/sample.otm.json"));
             foreach (var (excepted, actual) in dictionary.Words.Zip(same.Words, (excepted, acutual) => (excepted, acutual)))
             {
                 Assert.AreEqual(excepted.Entry, actual.Entry);

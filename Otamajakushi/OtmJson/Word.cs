@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Text.Json.Serialization;
 
-namespace Otamajakushi
+namespace Otamajakushi.OtmJson
 {
     public class Word
     {

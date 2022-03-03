@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
-namespace Otamajakushi
+namespace Otamajakushi.OtmJson
 {
     public class Zpdic
     {

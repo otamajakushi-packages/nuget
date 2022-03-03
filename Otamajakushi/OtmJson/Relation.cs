@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace Otamajakushi
+namespace Otamajakushi.OtmJson
 {
     public class Relation
     {

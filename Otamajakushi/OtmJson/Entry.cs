@@ -1,16 +1,16 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace Otamajakushi
+namespace Otamajakushi.OtmJson
 {
-    public class Content
+    public class Entry
     {
-        [JsonPropertyName("title")]
-        public string Title { get; set; }
+        [JsonPropertyName("id")]
+        public int Id { get; set; }
 
-        [JsonPropertyName("text")]
-        public string Text { get; set; }
+        [JsonPropertyName("form")]
+        public string Form { get; set; }
 
-        public static bool operator ==(Content l, Content r)
+        public static bool operator ==(Entry l, Entry r)
         {
             if (l is null && r is null)
             {
@@ -23,7 +23,7 @@ namespace Otamajakushi
             return l.Equals(r);
         }
 
-        public static bool operator !=(Content l, Content r)
+        public static bool operator !=(Entry l, Entry r)
         {
             if (l is null && r is null)
             {
@@ -37,11 +37,11 @@ namespace Otamajakushi
         }
 
         public override bool Equals(object obj)
-            => obj is Content content &&
-            Title == content.Title &&
-            Text == content.Text;
+            => obj is Entry entry &&
+            Id == entry.Id &&
+            Form == entry.Form;
 
         public override int GetHashCode()
-            => Title.GetHashCode() ^ Text.GetHashCode();
+            => Id.GetHashCode() ^ Form.GetHashCode();
     }
 }
