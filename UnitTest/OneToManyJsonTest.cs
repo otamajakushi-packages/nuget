@@ -5,6 +5,7 @@ using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Otamajakushi;
 using System.Text;
+using System.Collections.Generic;
 
 namespace UnitTest
 {
@@ -31,22 +32,13 @@ namespace UnitTest
         [TestMethod]
         public void EntryTest()
         {
-            Assert.AreEqual(3, dictionary.Words[0].Entry.Id);
-            Assert.AreEqual(6, dictionary.Words[1].Entry.Id);
-            Assert.AreEqual(4, dictionary.Words[2].Entry.Id);
-            Assert.AreEqual(5, dictionary.Words[3].Entry.Id);
-            Assert.AreEqual(2, dictionary.Words[4].Entry.Id);
-            Assert.AreEqual(1, dictionary.Words[5].Entry.Id);
-            Assert.AreEqual(7, dictionary.Words[6].Entry.Id);
-            Assert.AreEqual(8, dictionary.Words[7].Entry.Id);
-            Assert.AreEqual("+", dictionary.Words[0].Entry.Form);
-            Assert.AreEqual(",", dictionary.Words[1].Entry.Form);
-            Assert.AreEqual("-", dictionary.Words[2].Entry.Form);
-            Assert.AreEqual(".", dictionary.Words[3].Entry.Form);
-            Assert.AreEqual("<", dictionary.Words[4].Entry.Form);
-            Assert.AreEqual(">", dictionary.Words[5].Entry.Form);
-            Assert.AreEqual("[", dictionary.Words[6].Entry.Form);
-            Assert.AreEqual("]", dictionary.Words[7].Entry.Form);
+            var ids = new List<int> { 3, 6, 4, 5, 2, 1, 7, 8 };
+            var forms = new List<string> { "+", ",", "-", ".", "<", ">", "[", "]" };
+            foreach (var (item, index) in dictionary.Words.Select((item, index) => (item, index)))
+            {
+                Assert.AreEqual(ids[index], item.Entry.Id);
+                Assert.AreEqual(forms[index], item.Entry.Form);
+            }
         }
 
         [TestMethod]
@@ -82,7 +74,6 @@ namespace UnitTest
             }
         }
 
-
         [TestMethod]
         public void ContentsTest()
         {
@@ -91,14 +82,18 @@ namespace UnitTest
                 Assert.IsNotNull(word.Contents);
                 Assert.AreEqual("C\u8a00\u8a9e", word.Contents[0].Title);
             }
-            Assert.AreEqual("C\u8a00\u8a9e\u3067 (*ptr)++; \u306b\u76f8\u5f53\u3059\u308b\u3002", dictionary.Words[0].Contents[0].Text);
-            Assert.AreEqual("C\u8a00\u8a9e\u3067 *ptr=getchar(); \u306b\u76f8\u5f53\u3059\u308b\u3002", dictionary.Words[1].Contents[0].Text);
-            Assert.AreEqual("C\u8a00\u8a9e\u3067 (*ptr)--; \u306b\u76f8\u5f53\u3059\u308b\u3002", dictionary.Words[2].Contents[0].Text);
-            Assert.AreEqual("C\u8a00\u8a9e\u3067 putchar(*ptr); \u306b\u76f8\u5f53\u3059\u308b\u3002", dictionary.Words[3].Contents[0].Text);
-            Assert.AreEqual("C\u8a00\u8a9e\u3067 ptr--; \u306b\u76f8\u5f53\u3059\u308b\u3002", dictionary.Words[4].Contents[0].Text);
-            Assert.AreEqual("C\u8a00\u8a9e\u3067 ptr++; \u306b\u76f8\u5f53\u3059\u308b\u3002", dictionary.Words[5].Contents[0].Text);
-            Assert.AreEqual("C\u8a00\u8a9e\u306e while(*ptr){ \u306b\u76f8\u5f53\u3059\u308b\u3002", dictionary.Words[6].Contents[0].Text);
-            Assert.AreEqual("C\u8a00\u8a9e\u3067 } \u306b\u76f8\u5f53\u3059\u308b\u3002", dictionary.Words[7].Contents[0].Text);
+            var texts = new List<string> {
+                "C\u8a00\u8a9e\u3067 (*ptr)++; \u306b\u76f8\u5f53\u3059\u308b\u3002",
+                "C\u8a00\u8a9e\u3067 *ptr=getchar(); \u306b\u76f8\u5f53\u3059\u308b\u3002",
+                "C\u8a00\u8a9e\u3067 (*ptr)--; \u306b\u76f8\u5f53\u3059\u308b\u3002",
+                "C\u8a00\u8a9e\u3067 putchar(*ptr); \u306b\u76f8\u5f53\u3059\u308b\u3002",
+                "C\u8a00\u8a9e\u3067 ptr--; \u306b\u76f8\u5f53\u3059\u308b\u3002",
+                "C\u8a00\u8a9e\u3067 ptr++; \u306b\u76f8\u5f53\u3059\u308b\u3002",
+                "C\u8a00\u8a9e\u306e while(*ptr){ \u306b\u76f8\u5f53\u3059\u308b\u3002",
+                "C\u8a00\u8a9e\u3067 } \u306b\u76f8\u5f53\u3059\u308b\u3002",
+            };
+            foreach (var (item, index) in dictionary.Words.Select((item, index) => (item, index)))
+                Assert.AreEqual(texts[index], item.Contents[0].Text);
         }
 
         [TestMethod]
